@@ -3,7 +3,9 @@ from typing import Any
 from typing import Dict
 from typing import Optional
 
-from jsonrpcclient.clients.tornado_client import TornadoClient
+from aiohttp import ClientSession
+from jsonrpcclient import Ok, request, parse
+# from jsonrpcclient.clients.tornado_client import TornadoClient
 from jsonrpcserver import async_dispatch as dispatch
 from jsonrpcserver import method
 from loguru import logger
@@ -78,12 +80,16 @@ Either a properly named notebook (ending in .sync.ipynb) is not running, or it d
         logger.warning(message)
         return {"success": False, "error": message}
 
-    client = TornadoClient(notebook_server)
-    response = await client.request(command_name, data=data)
-    if not response.data.ok:
+    async with ClientSession() as session:
+        async with session.post(
+            notebook_server, json=request(command_name, params=data)
+        ) as response:
+            parsed = parse(await response.json())
+    if not isinstance(parsed, Ok):
         message = "Got failed response from notebook: {response}"
-        logger.error(message)
+        logging.error(message)
         return {"success": False, "error": message}
+    print(parsed.result)
     return {"success": True}
 
 

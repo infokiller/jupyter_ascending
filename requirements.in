@@ -1,0 +1,12 @@
+notebook
+# TODO: upgrade to jupyter-server 2 after fixing jsonrpcclient isues
+jupyter-server<2
+jupytext
+jsonrpcserver~=4.1
+jsonrpcclient[requests]~=4.0
+aiohttp
+ipywidgets
+loguru
+attrs
+toml
+edlib

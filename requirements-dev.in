@@ -1,0 +1,32 @@
+-c requirements.txt
+pytest
+pytest-cov
+pytest-asyncio
+# nbval
+
+pip-tools~=6.12
+pylint~=2.15
+yapf~=0.32
+isort~=5.10
+ipython~=8.5
+jupytext~=1.0
+# ipykernel is required for the VSCode interactive window
+ipykernel
+# ipywidgets is required for rich to run in Jupyter Notebook or the VSCode
+# interactive window.
+ipywidgets
+
+# jupyterlab<4
+# jupyterlab-lsp
+# python-lsp-server[all]
+# Classic Jupyter Notebook:
+# notebook
+
+# nbstripout
+
+# nbdev~=2.3
+# matplotlib~=3.5
+# pandas~=1.5
+# scipy~=1.7
+# seaborn~=0.11
+# requests~=2.26

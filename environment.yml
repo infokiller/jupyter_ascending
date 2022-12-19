@@ -1,0 +1,11 @@
+name: jupyter-ascending
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+    - -r requirements.txt
+    - -r requirements-dev.txt
+    - -r requirements-test.txt
